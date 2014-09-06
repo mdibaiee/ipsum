@@ -16,6 +16,14 @@ if(!String.prototype.repeat) {
   }
 }
 
+var stretch = function stretch(a, n) {
+  var d = a;
+  while(d.length < n) {
+    d = d.concat(a.sort(function() { return Math.random() < 0.5}));
+  }
+  return d;
+}
+
 
 /* IPSUM GENERATOR */
 var general = require('./general.json');
@@ -45,14 +53,6 @@ function loremipsum(data) {
       r = d.sort(function(a, b) {
         return Math.random() > 0.5;
       });
-
-  var stretch = function stretch(a, n) {
-    var d = a;
-    while(d.length < n) {
-      d = d.concat(a);
-    }
-    return d;
-  }
 
   switch(unit) {
     case 'c':
