@@ -49,10 +49,10 @@ function loremipsum(data) {
     }
   }
 
-  var d = dictionary[method].concat(general),
-      r = d.sort(function(a, b) {
-        return Math.random() > 0.5;
-      });
+  var r = dictionary[method].concat(general);
+  r.sort(function() {
+    return Math.floor(Math.random()*3-1);
+  });
 
   switch(unit) {
     case 'c':
@@ -65,7 +65,7 @@ function loremipsum(data) {
       r = stretch(r, 15*(Math.random()+1));
       var s = r.join(' ') + '. <br>';
       for(var i = 1; i < amount; i++) {
-        r = r.sort(function() { return Math.random() > 0.5; });
+        r = r.sort(function() { return Math.floor(Math.random()*3-1); });
         r = stretch(r, 15*(Math.random()*3+2));
 
         s += r.join(' ') + '. <br>';
