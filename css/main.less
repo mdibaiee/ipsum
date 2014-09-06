@@ -1,0 +1,193 @@
+@import 'normalize';
+@import 'fonts';
+
+body, html {
+  margin: 0;
+
+  font-size: 10px;
+  direction: rtl;
+}
+body {
+  background: rgb(255, 110, 100);
+  color: white;
+
+  font-size: 1.6rem;
+  font-family: 'Roya';
+  text-align: center;
+}
+*:focus, *:focus:after, *:focus:before {
+  outline: none !important;
+}
+*::-moz-focus-inner {
+  border: none;
+}
+
+h1 {
+  margin-top: 0;
+
+  font-family: 'Zobeir';
+  font-size: 7.5rem;
+  font-weight: normal;
+
+  transition: 0.6s ease;
+  -webkit-transition: 0.6s ease;
+}
+h3 {
+  margin-top: 0;
+
+  font-weight: normal;
+  font-size: 2rem;
+
+  transition: 0.6s ease;
+  -webkit-transition: 0.6s ease;
+}
+
+p {
+  font-size: 2.8rem;
+}
+
+.options {
+  margin-top: 0;
+  margin-bottom: 5rem;
+
+  transition: 0.6s ease;
+  -webkit-transition: 0.6s ease;
+}
+
+.options div {
+  display: inline-block;
+
+  margin: 0 5%;
+  vertical-align: top;
+}
+
+ul {
+  list-style: none;
+
+  padding: 0;
+
+  font-size: 1.9rem;
+}
+
+li {
+  display: block;
+
+  cursor: pointer;
+  opacity: 0.6;
+
+  transition: 0.2s ease;
+  -webkit-transition: 0.2s ease;
+}
+
+li.active {
+  opacity: 1;
+}
+
+li:hover {
+  opacity: 1;
+
+  transition: 0.2s ease;
+  -webkit-transition: 0.2s ease;
+}
+
+a[href="#"] {
+  position: relative;
+  padding: 0.7rem 4rem;
+
+  color: white;
+
+  text-decoration: none;
+  font-size: 2rem;
+
+  border: 2px solid white;
+  border-radius: 3px;
+
+  transition: 0.4s ease;
+  -webkit-transition: 0.4s ease;
+}
+
+a[href="#"]:before {
+  content: '';
+
+  background: white;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 3px;
+
+  transform: scale(1.2, 1.4);
+  -webkit-transform: scale(1.2, 1.4);
+
+  opacity: 0;
+  z-index: -1;
+
+  transition: 0.4s ease;
+  -webkit-transition: 0.4s ease;
+}
+
+a[href="#"]:not(.running):hover:before {
+  border-radius: 0;
+
+  transform: scale(1, 1);
+  -webkit-transform: scale(1, 1);
+
+  opacity: 1;
+  z-index: -1;
+
+  transition: 0.4s ease;
+  -webkit-transition: 0.4s ease;
+}
+
+a[href="#"]:not(.running):hover {
+  color: rgb(70, 70, 70);
+}
+
+a[href="#"].running {
+  pointer-events: none;
+  animation: loading 1.5s ease infinite;
+  -webkit-animation: loading 1.5s ease infinite;
+}
+
+
+@keyframes loading {
+  0% { box-shadow: 0 0 0 0 white inset; }
+  50% { box-shadow: 0 5.5rem 0 0 white inset; color: rgb(70, 70, 70); }
+  51% { box-shadow: 0 -5.5rem 0 0 white inset; color: rgb(70, 70, 70); }
+  100% { box-shadow: 0 0 0 0 white inset; }
+}
+
+@-webkit-keyframes loading {
+  0% { box-shadow: 0 0 0 0 white inset; }
+  50% { box-shadow: 0 5.5rem 0 0 white inset; color: rgb(70, 70, 70); }
+  51% { box-shadow: 0 -5.5rem 0 0 white inset; color: rgb(70, 70, 70); }
+  100% { box-shadow: 0 0 0 0 white inset; }
+}
+
+.runaway {
+  margin-top: -15rem;
+
+  transition: 0.6s ease;
+  -webkit-transition: 0.6s ease;
+}
+
+.modal {
+  width: 60%;
+
+  font-size: 1.8rem;
+
+  margin: 5rem auto;
+  padding: 2rem 3rem;
+  text-align: right;
+  font-size: 1.8rem;
+  text-indent: 2rem;
+}
+
+*::-moz-selection {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
