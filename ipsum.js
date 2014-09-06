@@ -8,28 +8,32 @@ module.exports.app = app;
 app.get(/.*\/.*\/.*/, function(req, res) {
 
   res.end(go(req.url));
-})
+});
 
 if(!String.prototype.repeat) {
   String.prototype.repeat = function(n) {
     return new Array(n+1).join(this);
-  }
+  };
+}
+
+function randomize() {
+  return Math.floor(Math.random()*3-1);
 }
 
 var stretch = function stretch(a, n) {
   var d = a;
   while(d.length < n) {
-    d = d.concat(a.sort(function() { return Math.random() < 0.5}));
+    d = d.concat(a.sort(randomize));
   }
   return d;
-}
+};
 
 
 /* IPSUM GENERATOR */
 var general = require('./general.json');
 var dictionary = {
   'design': require('./design.json')
-}
+};
 var normal = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیستری را برای طراحان رایانه ای و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.';
 
 function loremipsum(data) {
@@ -50,9 +54,7 @@ function loremipsum(data) {
   }
 
   var r = dictionary[method].concat(general);
-  r.sort(function() {
-    return Math.floor(Math.random()*3-1);
-  });
+  r.sort(randomize);
 
   switch(unit) {
     case 'c':
@@ -65,7 +67,7 @@ function loremipsum(data) {
       r = stretch(r, 15*(Math.random()+1));
       var s = r.join(' ') + '. <br>';
       for(var i = 1; i < amount; i++) {
-        r = r.sort(function() { return Math.floor(Math.random()*3-1); });
+        r = r.sort(randomize);
         r = stretch(r, 15*(Math.random()*3+2));
 
         s += r.join(' ') + '. <br>';
