@@ -7,7 +7,7 @@ module.exports.app = app;
 
 app.get(/.*\/.*\/.*/, function(req, res) {
 
-  res.end('<head><meta charset="UTF-8"></head><p dir="rtl">' + go(req.url) + '</p>');
+  res.end(go(req.url));
 })
 
 if(!String.prototype.repeat) {
@@ -23,13 +23,7 @@ var dictionary = {
   'design': require('./design.json')
 }
 var normal = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیستری را برای طراحان رایانه ای و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.';
-function randomAlamat() {
-  if(Math.floor(Math.random() * 4) > 0) return ' ';
-  else {
-    if(Math.floor(Math.random() * 4) > 0) return ' ';
-    else return '، ';
-  }
-}
+
 function loremipsum(data) {
   var method = data[0],
       unit = data[1],
@@ -80,11 +74,6 @@ function loremipsum(data) {
   }
 }
 function go(url) {
-  var req = url.split('/'),
-      data = {};
-  req.splice(0, 1);
-  for(var i = 0, len = req.length; i < len; i++) {
-    data[i] = req[i];
-  }
-  return loremipsum(data);
+  var req = url.split('/');
+  return loremipsum(req.slice(1));
 }
