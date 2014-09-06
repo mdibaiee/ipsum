@@ -15,13 +15,8 @@ $('a').click(function(e) {
   e.preventDefault();
   var $this = $(this);
 
-  if($this.hasClass('runaway')) {
-    $this.text('بساز!');
-    $run.removeClass('runaway');
-    return;
-  }
   $this.addClass('running');
-  var url = '/' + $('.options div:first-child li.active').data('val') + '/' + $('.options div:nth-child(2) li.active').data('val') + '/' + $('.options div:last-child li.active').data('val');
+  var url = '/' + $('.options div:first-child li.active').data('val') + '/' + $('.options div:nth-child(2) li.active').data('val') + '/' + ($('.options div:last-child li.active').data('val') || 1);
 
   $.ajax({
     url: url,
@@ -35,14 +30,12 @@ $('li').click(function() {
 })
 
 function success(ipsum) {
-   $('a').removeClass('running').text('بازگشت');
-   $run.addClass('runaway');
-
-   $('.modal').text(ipsum);
-
-   var range = document.createRange();
-   range.selectNodeContents($('.modal')[0]);
-   var selection = window.getSelection();
-   selection.removeAllRanges();
-   selection.addRange(range);
+  $('a').removeClass('running');
+  $('.modal').html(ipsum);
+ 
+  var range = document.createRange();
+  range.selectNodeContents($('.modal')[0]);
+  var selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
 }
