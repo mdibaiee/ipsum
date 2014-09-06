@@ -16,7 +16,7 @@ $('a').click(function(e) {
   var $this = $(this);
 
   if($this.hasClass('runaway')) {
-    $this.text('بساز');
+    $this.text('!بساز');
     $run.removeClass('runaway');
     return;
   }
