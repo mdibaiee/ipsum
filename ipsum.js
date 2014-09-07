@@ -22,6 +22,12 @@ function randomize() {
 
 var stretch = function stretch(a, n) {
   var d = a;
+  if(typeof d == 'string') {
+    while(d.length < n) {
+      d = d.repeat(2);
+    }
+    return d;
+  }
   while(d.length < n) {
     d = d.concat(a.sort(randomize));
   }
@@ -35,26 +41,23 @@ var dictionary = {
   'design': require('./design.json')
 };
 var normal = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیستری را برای طراحان رایانه ای و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.';
-
+app.listen(8008);
+var r;
 function loremipsum(data) {
   var method = data[0],
       unit = data[1],
       amount = +data[2];
 
 
-  if(method == 'normal') {
-    switch(unit) {
-      case 'c':
-        return normal.slice(0, amount);
-      case 'p':
-        return normal.repeat(amount);
-      case 'w':
-        return normal.split(' ').slice(0, amount).join(' ');
-    }
-  }
+  if(method == 'normal' && unit == 'p')
+    return (normal + '<br>').repeat(amount);
+  else if (method == 'normal')
+    r = normal.split(' ');
 
-  var r = dictionary[method].concat(general);
-  r.sort(randomize);
+  if(!r) {
+    r = dictionary[method].concat(general);
+    r.sort(randomize);
+  }
 
   switch(unit) {
     case 'c':
@@ -87,5 +90,3 @@ function go(url) {
   var req = url.split('/');
   return loremipsum(req.slice(1));
 }
-
-app.listen(8008);
