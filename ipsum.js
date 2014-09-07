@@ -6,8 +6,8 @@ app.use(express.static(__dirname + '/ipsum', {maxAge: 60*60*24*7}));
 module.exports.app = app;
 
 app.get(/.*\/.*\/.*/, function(req, res) {
-
-  res.end(go(req.url));
+  res.charset = 'utf-8';
+  res.end('<head><meta charset="utf-8"></head>' + go(req.url));
 });
 
 if(!String.prototype.repeat) {
@@ -59,7 +59,15 @@ function loremipsum(data) {
   switch(unit) {
     case 'c':
       r = stretch(r, amount/2);
-      return r.slice(0, amount/2).join(' ').slice(0, amount + (amount/4-1));
+      var c = 0;
+      r = r.filter(function(a) {
+        if(c < amount && c + a.length <= amount) {
+          c += a.length;
+          return true;
+        }
+        return false;
+      });
+      return r.slice(0, Math.round(amount/2)).join(' ');
     case 'w':
       r = stretch(r, amount);
       return r.slice(0, amount).join(' ');
@@ -79,3 +87,5 @@ function go(url) {
   var req = url.split('/');
   return loremipsum(req.slice(1));
 }
+
+app.listen(8008);
