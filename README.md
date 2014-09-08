@@ -4,7 +4,7 @@ The code powering [ipsum.ir](http://ipsum.ir), a categorized ipsum generator wit
 
 ## REST API
 
-The grammer of our REST API is as follows:
+The grammer of our API is as follows:
 
      http://ipsum.ir/:category/:unit/:amount
 
@@ -14,7 +14,7 @@ Our only category is `design` right now, we're planning to add more categories s
 
 #### Units
 
-Currently, units are paragraph as `p`, word as `w` and character as `c`. Please not, character doesn't include spaces.
+Currently, units are paragraph as `p`, word as `w` and character as `c`. Please note, character doesn't include spaces.
 
 Examples:
 
