@@ -34,7 +34,6 @@ var stretch = function stretch(a, n) {
   return d;
 };
 
-
 /* IPSUM GENERATOR */
 var general = require('./general.json');
 var dictionary = {
