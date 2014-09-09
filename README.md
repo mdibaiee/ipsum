@@ -10,7 +10,9 @@ The grammer of our API is as follows:
 
 #### Categories
 
-Our only category is `design` right now, we're planning to add more categories soon, feel free to add a category!
+Available categories: news, design and normal
+
+We're planning to add more categories soon, feel free to add a category!
 
 #### Units
 
