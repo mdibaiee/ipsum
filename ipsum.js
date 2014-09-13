@@ -1,7 +1,14 @@
 var express = require('express'),
-    app = express();
+    app = express(),
+    server = require('http').Server(app),
+    io = require('socket.io')(server),
+    fs = require('fs');
 
-app.use(express.static(__dirname + '/ipsum', {maxAge: 60*60*24*7}));
+var count = require('./count.json');
+
+server.listen(8888);
+
+app.use(express.static(__dirname + '/client', {maxAge: 60*60*24*7}));
 
 module.exports.app = app;
 
@@ -90,3 +97,17 @@ function go(url) {
   var req = url.split('/');
   return loremipsum(req.slice(1));
 }
+
+//COUNTER
+io.on('connection', function(socket) {
+  socket.on('counter', function(data) {
+    if(data) {
+      var r = data.split(' ').join('').length + count;
+      fs.writeFile(__dirname + '/count.json', r, function() {
+        count = +(fs.readFileSync(__dirname + '/count.json', 'utf8'));
+      })
+      io.emit('counter', r);
+    }
+    else io.emit('counter', count);
+  })
+});
