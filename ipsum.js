@@ -92,9 +92,9 @@ function loremipsum(data) {
   }
 }
 function go(url) {
-  var req = url.split('/').slice(1);
-  counting(loremipsum(req));
-  return loremipsum(req);
+  var lorem = loremipsum(url.split('/').slice(1));
+  counting(lorem);
+  return lorem;
 }
 
 //COUNTER
