@@ -1,3 +1,5 @@
+var socket = io();
+
 var $run = $('h1, h3, .options, a');
 
 $('li[contenteditable]').click(function(e) {
@@ -5,7 +7,7 @@ $('li[contenteditable]').click(function(e) {
 });
 
 $('li[contenteditable]').on('keydown', function(e) {
-  if(e.keyCode !== 8 && isNaN(+e.key)) return e.preventDefault();
+  if(e.keyCode !== 8 && e.keyCode !== 46 && isNaN(+e.key)) return e.preventDefault();
 });
 $('li[contenteditable]').on('keyup', function(e) {
   $(this).data('val', /\d*/.exec($(this).html()));
@@ -39,3 +41,7 @@ function success(ipsum) {
   selection.removeAllRanges();
   selection.addRange(range);
 }
+
+socket.on('counter', function(count) {
+  $('#count').text(count);
+});
