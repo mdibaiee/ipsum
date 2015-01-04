@@ -1,7 +1,7 @@
 var express = require('express'),
     app = express();
 
-app.use(express.static(__dirname + '/ipsum', {maxAge: 60*60*24*7}));
+app.use(express.static(__dirname + '/client', {maxAge: 60*60*24*7}));
 
 module.exports.app = app;
 

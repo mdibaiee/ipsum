@@ -5,7 +5,7 @@ $('li[contenteditable]').click(function(e) {
 });
 
 $('li[contenteditable]').on('keydown', function(e) {
-  if(e.keyCode !== 8 && isNaN(+e.key)) return e.preventDefault();
+  if([8, 37, 38, 39 ,40, 46].indexOf(e.keyCode) < 0 && isNaN(+e.key)) return e.preventDefault();
 });
 $('li[contenteditable]').on('keyup', function(e) {
   $(this).data('val', /\d*/.exec($(this).html()));
