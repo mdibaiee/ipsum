@@ -1,13 +1,16 @@
 var express = require('express'),
-    app = express();
+    app = express(),
+    server = require('http').Server(app),
+    io = require('socket.io')(server),
+    fs = require('fs');
 
 app.use(express.static(__dirname + '/client', {maxAge: 60*60*24*7}));
 
 module.exports.app = app;
 
 app.get(/.*\/.*\/.*/, function(req, res) {
-  res.charset = 'utf-8';
-  res.end(go(req.url));
+    res.charset = 'utf-8';
+    res.end(go(req.url));
 });
 
 if(!String.prototype.repeat) {
@@ -86,7 +89,21 @@ function loremipsum(data) {
       return s;
   }
 }
+
+//COUNTER
+io.on('connection', function(socket) {
+	socket.emit('count', +fs.readFileSync('count.json', 'utf8'));
+});
+function counter(data) {
+	var count = data.split(' ').length + (+fs.readFileSync('count.json', 'utf8'));
+	fs.writeFileSync('count.json', count);
+	io.emit('count', count);
+}
+
+
 function go(url) {
-  var req = url.split('/');
-  return loremipsum(req.slice(1));
+  var req = url.split('/'),
+  		ipsum = loremipsum(req.slice(1));
+  counter(ipsum);
+  return ipsum;
 }
