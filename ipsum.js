@@ -4,13 +4,15 @@ var express = require('express'),
     io = require('socket.io')(server),
     fs = require('fs');
 
-app.use(express.static(__dirname + '/client', {maxAge: 60*60*24*7}));
+app.use(express.static(__dirname + '/ipsum', {maxAge: 60*60*24*7}));
 
 module.exports.app = app;
 
 app.get(/.*\/.*\/.*/, function(req, res) {
+  if(req.url.split('/')[1] != 'socket.io') {
     res.charset = 'utf-8';
     res.end(go(req.url));
+  }
 });
 
 if(!String.prototype.repeat) {
