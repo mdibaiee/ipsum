@@ -22,7 +22,7 @@ Examples:
 
     http://ipsum.ir/design/p/2
     http://ipsum.ir/normal/c/250
-    http://ipsum.ir/design/w/10
+    http://ipsum.ir/news/w/10
 
 
 ## Contributing
