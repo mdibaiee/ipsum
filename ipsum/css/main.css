@@ -510,3 +510,10 @@ a[href="#"].running {
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
 }
+
+.count {
+  position: fixed;
+  bottom: 3rem;
+  left: 3rem;
+  font-size: 2.2rem;
+}
