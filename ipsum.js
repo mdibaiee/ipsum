@@ -1,14 +1,10 @@
 var express = require('express'),
-<<<<<<< HEAD
     app = express(),
     server = require('http').Server(app),
     io = require('socket.io')(server),
     fs = require('fs'),
     counter = require('./counter.json');
-=======
-    app = express();
->>>>>>> d16e6fb07eb8765657af0e649b91101ff835a332
-
+    
 app.use(express.static(__dirname + '/client', {maxAge: 60*60*24*7}));
 
 module.exports.app = app;
