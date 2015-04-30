@@ -1,3 +1,5 @@
+var socket = io();
+
 var $run = $('h1, h3, .options, a');
 
 $('li[contenteditable]').click(function(e) {
@@ -39,3 +41,9 @@ function success(ipsum) {
   selection.removeAllRanges();
   selection.addRange(range);
 }
+
+var counterElement = $('#counter');
+socket.on('counter', function(data) {
+  console.log(data);
+  counterElement.html(data);
+});
