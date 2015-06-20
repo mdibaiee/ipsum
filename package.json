@@ -1,0 +1,21 @@
+{
+  "name": "ipsum",
+  "version": "1.0.0",
+  "description": "The code powering [ipsum.ir](http://ipsum.ir), a categorized ipsum generator with REST API for those who care.",
+  "main": "ipsum.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mdibaiee/ipsum"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/mdibaiee/ipsum/issues"
+  },
+  "devDependencies": {
+    "express": "~4.12.4"
+  }
+}
