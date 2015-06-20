@@ -96,3 +96,5 @@ function go(url) {
   var req = url.split('/');
   return loremipsum(req.slice(1));
 }
+
+app.listen(8888);
